@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="text-center mb-3">Poll </h1>
+  {% if current_questions %}
+    {% for question in current_questions %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="lead">{{ question.question_text }}</p>
+          <div class="fluid">
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <a  href="{% url 'polls:detail' question.id %}" class="btn btn-warning btn-sm">Vote Now</a>
+          &emsp;&emsp;
+          <a href="{% url 'polls:results' question.id %}" class="btn btn-danger btn-sm">Results</a>
+        </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No polls available</p>
+  {% endif %}
+{% endblock %}
